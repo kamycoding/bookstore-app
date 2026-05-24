@@ -84,3 +84,12 @@ const typewriterEffect = () => {
 };
 
 typewriterEffect();
+
+document.getElementById("navSearchLink")?.addEventListener("click", (e) => {
+  e.preventDefault();
+  const searchInput = document.querySelector(".hero-search-input");
+  if (searchInput) {
+    searchInput.closest(".hero-section")?.scrollIntoView({ behavior: "smooth" });
+    setTimeout(() => searchInput.focus(), 500);
+  }
+});

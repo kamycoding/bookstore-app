@@ -1,30 +1,35 @@
 function getBookInfoTemplate(book, index) {
-  const likeButtonClass = book.liked ? "is-primary" : "is-light";
+  const likeButtonClass = book.liked ? "book-btn-liked" : "book-btn";
 
   return /*html*/ `
-    <h2 class="title is-4">${book.name}</h2>
-    <p class="subtitle is-6">${book.author}</p>
-    <p>Price: ${book.price} €</p>
-    <p>Genre: ${book.genre}</p>
-    <p>Published: ${book.publishedYear}</p>
-    <button class="button ${likeButtonClass}" type="button" onclick="toggleLike(${index})">
-      ❤️ ${book.likes}
+    <h2 class="book-title">${book.name}</h2>
+    <p class="book-author">${book.author}</p>
+    <div class="book-meta">
+      <span class="book-meta-item">${book.price} €</span>
+      <span class="book-meta-divider">·</span>
+      <span class="book-meta-item">${book.genre}</span>
+      <span class="book-meta-divider">·</span>
+      <span class="book-meta-item">${book.publishedYear}</span>
+    </div>
+    <button class="${likeButtonClass}" type="button" onclick="toggleLike(${index})">
+      <span class="book-btn-icon">${book.liked ? "❤️" : "🤍"}</span>
+      <span>${book.likes}</span>
     </button>
   `;
 }
 
 function getCommentTemplate(comment) {
   return /*html*/ `
-    <article class="box is-shadowless">
-      <strong>${comment.name}</strong>
-      <p>${comment.comment}</p>
-    </article>
+    <div class="comment">
+      <strong class="comment-name">${comment.name}</strong>
+      <p class="comment-text">${comment.comment}</p>
+    </div>
   `;
 }
 
 function getCommentsTemplate(comments) {
   if (comments.length === 0) {
-    return `<p class="has-text-grey">No comments yet.</p>`;
+    return `<p class="comments-empty">No comments yet.</p>`;
   }
 
   return comments.map((comment) => getCommentTemplate(comment)).join("");
@@ -32,25 +37,24 @@ function getCommentsTemplate(comments) {
 
 function getCommentFormTemplate(index) {
   return /*html*/ `
-    <form onsubmit="addComment(event, ${index})">
-      <div class="field">
-        <input class="input" name="comment" placeholder="Write a comment" />
-      </div>
-      <button class="button is-primary" type="submit">Add comment</button>
+    <form class="comment-form" onsubmit="addComment(event, ${index})">
+      <input class="comment-input" name="comment" placeholder="Write a comment..." />
+      <button class="comment-submit" type="submit">Send</button>
     </form>
   `;
 }
 
 function getBookTemplate(book, index) {
   return /*html*/ `
-    <div class="column is-one-third-desktop is-half-tablet">
-      <article class="card">
-        <div class="card-content">
+    <div class="book-column">
+      <article class="book-card">
+        <div class="book-card-body">
           ${getBookInfoTemplate(book, index)}
-          <hr />
-          <h3 class="title is-6">Comments</h3>
-          ${getCommentsTemplate(book.comments)}
-          ${getCommentFormTemplate(index)}
+          <div class="book-comments-section">
+            <h3 class="book-comments-heading">Comments</h3>
+            ${getCommentsTemplate(book.comments)}
+            ${getCommentFormTemplate(index)}
+          </div>
         </div>
       </article>
     </div>
