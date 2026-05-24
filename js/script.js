@@ -17,4 +17,16 @@ const toggleLike = (index) => {
   renderBooks();
 };
 
+const addComment = (event, index) => {
+  event.preventDefault();
+
+  const commentInput = event.target.elements.comment;
+  const commentText = commentInput.value.trim();
+
+  if (commentText === "") return;
+
+  books[index].comments.push({ name: "Guest", comment: commentText });
+  renderBooks();
+};
+
 renderBooks();

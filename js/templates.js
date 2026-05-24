@@ -26,6 +26,17 @@ function getCommentsTemplate(comments) {
   return comments.map((comment) => getCommentTemplate(comment)).join("");
 }
 
+function getCommentFormTemplate(index) {
+  return /*html*/ `
+    <form onsubmit="addComment(event, ${index})">
+      <div class="field">
+        <input class="input" name="comment" placeholder="Write a comment" />
+      </div>
+      <button class="button is-primary" type="submit">Add comment</button>
+    </form>
+  `;
+}
+
 function getBookTemplate(book, index) {
   return /*html*/ `
     <div class="column is-one-third-desktop is-half-tablet">
@@ -35,6 +46,7 @@ function getBookTemplate(book, index) {
           <hr />
           <h3 class="title is-6">Comments</h3>
           ${getCommentsTemplate(book.comments)}
+          ${getCommentFormTemplate(index)}
         </div>
       </article>
     </div>
