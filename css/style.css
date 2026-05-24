@@ -154,17 +154,20 @@ body {
 }
 
 .hero-content {
+  width: 100%;
   max-width: 860px;
   margin: 0 auto;
 }
 
 .hero-title {
+  text-align: center;
   margin-bottom: 24px;
   color: var(--text-main);
   font-size: clamp(2.7rem, 8vw, 6.4rem);
   font-weight: 900;
   line-height: 0.95;
   letter-spacing: -0.07em;
+  min-height: 1.9em;
 }
 
 .hero-title-accent {
@@ -173,9 +176,10 @@ body {
 }
 
 #typewriter {
-  display: inline-block;
-  min-width: 12ch;
-  text-align: center;
+  display: block;
+  min-height: 1em;
+  margin: 0 auto;
+  white-space: nowrap;
 }
 
 #typewriter::after {
@@ -223,6 +227,7 @@ body {
 
 .hero-search {
   display: flex;
+  width: min(100%, 680px);
   max-width: 680px;
   margin: 0 auto 20px;
   padding: 8px;
@@ -246,12 +251,20 @@ body {
 }
 
 .hero-search-input {
+  flex: 1;
+  flex-basis: 0;
+  width: 100%;
+  min-width: 0;
   height: 52px;
+  padding: 0 20px;
   border: none;
   border-radius: 999px;
   background: transparent;
   color: var(--text-main);
+  font: inherit;
+  outline: none;
   box-shadow: none;
+  text-align: left;
 }
 
 .hero-search-input::placeholder {
@@ -265,16 +278,19 @@ body {
 .hero-search-button {
   min-width: 132px;
   height: 52px;
+  padding: 0 24px;
+  border: none;
   border-radius: 999px;
   background: var(--accent);
-  border-color: var(--accent);
   color: white;
+  font: inherit;
   font-weight: 800;
+  cursor: pointer;
+  white-space: nowrap;
 }
 
 .hero-search-button:hover {
   background: #6d28d9;
-  border-color: #6d28d9;
   color: white;
 }
 
@@ -393,7 +409,7 @@ body {
 }
 
 .section-text {
-  max-width: 520px;
+  max-width: 600px;
   margin: 0 auto;
   color: var(--text-muted);
   font-size: 1rem;
@@ -640,4 +656,23 @@ body {
 
 .comment-submit:hover {
   background: #6d28d9;
+}
+
+/* ─── Hero Search Responsive ─── */
+@media (max-width: 600px) {
+  .hero-search {
+    flex-direction: column;
+    gap: 8px;
+    padding: 10px;
+    border-radius: 28px;
+  }
+
+  .hero-search-input,
+  .hero-search-button {
+    width: 100%;
+  }
+
+  .hero-search-input {
+    text-align: center;
+  }
 }
