@@ -40,8 +40,19 @@
           <div class="hero-content hero-content-centered">
             <h1 id="heroTitle" class="hero-title">
               Discover your
-              <span class="hero-title-accent">next read</span>
+              <span id="typewriter" class="hero-title-accent"></span>
             </h1>
+
+            <div class="hero-image-wrapper">
+              <img
+                class="hero-image"
+                src="./img/hero-book-img.png"
+                alt="Book illustration"
+                width="1254"
+                height="1254"
+                loading="lazy"
+              />
+            </div>
 
             <form id="heroSearch" class="hero-search" role="search">
               <input
@@ -60,9 +71,14 @@
               </button>
             </form>
 
-            <a href="#bookList" class="hero-scroll-link">Browse all books</a>
           </div>
         </div>
+
+        <a href="#bookList" class="scroll-indicator" aria-label="Scroll to books">
+          <svg class="scroll-arrow" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M6 9l6 6 6-6"/>
+          </svg>
+        </a>
       </div>
     </section>
 

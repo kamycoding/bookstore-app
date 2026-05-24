@@ -30,3 +30,40 @@ const addComment = (event, index) => {
 };
 
 renderBooks();
+
+/* ─── Typewriter Effect ─── */
+const typewriterElement = document.getElementById("typewriter");
+
+const typewriterPhrases = ["next read", "favorite book", "new adventure"];
+
+let phraseIndex = 0;
+let charIndex = 0;
+let isDeleting = false;
+let typewriterTimeout;
+
+function typewriterEffect() {
+  const currentPhrase = typewriterPhrases[phraseIndex];
+
+  if (isDeleting) {
+    typewriterElement.textContent = currentPhrase.substring(0, charIndex - 1);
+    charIndex--;
+  } else {
+    typewriterElement.textContent = currentPhrase.substring(0, charIndex + 1);
+    charIndex++;
+  }
+
+  let delay = isDeleting ? 40 : 80;
+
+  if (!isDeleting && charIndex === currentPhrase.length) {
+    delay = 2000;
+    isDeleting = true;
+  } else if (isDeleting && charIndex === 0) {
+    isDeleting = false;
+    phraseIndex = (phraseIndex + 1) % typewriterPhrases.length;
+    delay = 500;
+  }
+
+  typewriterTimeout = setTimeout(typewriterEffect, delay);
+}
+
+typewriterEffect();
