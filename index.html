@@ -5,6 +5,13 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Bookstore App</title>
 
+    <!-- Favicon -->
+    <link rel="icon" type="image/svg+xml" href="./img/faveicones/favicon.svg" />
+    <link rel="icon" type="image/png" sizes="96x96" href="./img/faveicones/favicon-96x96.png" />
+    <link rel="icon" type="image/x-icon" href="./img/faveicones/favicon.ico" />
+    <link rel="apple-touch-icon" sizes="180x180" href="./img/faveicones/apple-touch-icon.png" />
+    <link rel="manifest" href="./img/faveicones/site.webmanifest" />
+
     <link
       rel="stylesheet"
       href="https://cdn.jsdelivr.net/npm/bulma@1.0.4/css/bulma.min.css"
@@ -13,16 +20,30 @@
   </head>
 
   <body>
-    <header class="hero-section">
+    <header class="site-header">
+      <div class="container">
+        <nav class="site-navbar" aria-label="Main navigation">
+          <a class="site-logo" href="#hero">Bookstore</a>
+
+          <div class="site-nav-links">
+            <a href="#hero">Home</a>
+            <a href="#bookList">Books</a>
+            <a href="#heroSearch">Search</a>
+          </div>
+        </nav>
+      </div>
+    </header>
+
+    <section id="hero" class="hero-section" aria-labelledby="heroTitle">
       <div class="container">
         <div class="hero-layout hero-layout-centered">
           <div class="hero-content hero-content-centered">
-            <h1 class="hero-title">
+            <h1 id="heroTitle" class="hero-title">
               Discover your
               <span class="hero-title-accent">next read</span>
             </h1>
 
-            <form class="hero-search" role="search">
+            <form id="heroSearch" class="hero-search" role="search">
               <input
                 class="input hero-search-input"
                 type="search"
@@ -39,17 +60,49 @@
               </button>
             </form>
 
-            <a href="#bookList" class="hero-scroll-link"> Browse all books </a>
+            <a href="#bookList" class="hero-scroll-link">Browse all books</a>
           </div>
         </div>
       </div>
-    </header>
+    </section>
 
-    <main class="section">
+    <main class="section books-section">
       <div class="container">
-        <div id="bookList" class="columns is-multiline"></div>
+        <div class="section-heading">
+          <span class="section-label">Collection</span>
+          <h2 class="section-title">Explore our books</h2>
+          <p class="section-text">
+            Browse the current collection, like your favorite books, and add
+            your own comments.
+          </p>
+        </div>
+
+        <div id="bookList" class="columns is-multiline book-grid"></div>
       </div>
     </main>
+
+    <footer class="site-footer">
+      <div class="container">
+        <div class="footer-layout">
+          <div>
+            <a class="footer-logo" href="#hero">Bookstore</a>
+            <p class="footer-text">
+              A modern bookstore app built with Vanilla JavaScript and Bulma.
+            </p>
+          </div>
+
+          <div class="footer-links">
+            <a href="#hero">Home</a>
+            <a href="#bookList">Books</a>
+            <a href="#heroSearch">Search</a>
+          </div>
+        </div>
+
+        <div class="footer-bottom">
+          <p>© 2026 Bookstore App. Built for Developer Akademie.</p>
+        </div>
+      </div>
+    </footer>
 
     <script src="./js/books.js"></script>
     <script src="./js/templates.js"></script>
