@@ -1,4 +1,4 @@
-function getBookTemplate(book) {
+function getBookTemplate(book, index) {
   return /*html*/ `
     <div class="column is-one-third-desktop is-half-tablet">
       <article class="card">
@@ -7,7 +7,7 @@ function getBookTemplate(book) {
           <p class="subtitle is-6">${book.author}</p>
           <p>Price: ${book.price} €</p>
 
-          <button class="button is-light" type="button">
+          <button class="button is-light" type="button" onclick="toggleLike(${index})">
             ❤️ ${book.likes}
           </button>
         </div>
