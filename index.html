@@ -13,12 +13,35 @@
   </head>
 
   <body>
-    <header class="section">
+    <header class="hero-section">
       <div class="container">
-        <h1 class="title is-1">Bookstore App</h1>
-        <p class="subtitle">
-          A small bookstore project built with Vanilla JavaScript and Bulma CSS.
-        </p>
+        <div class="hero-layout hero-layout-centered">
+          <div class="hero-content hero-content-centered">
+            <h1 class="hero-title">
+              Discover your
+              <span class="hero-title-accent">next read</span>
+            </h1>
+
+            <form class="hero-search" role="search">
+              <input
+                class="input hero-search-input"
+                type="search"
+                name="search"
+                placeholder="Search by title, author or genre..."
+                aria-label="Search books"
+              />
+
+              <button
+                class="button is-primary hero-search-button"
+                type="button"
+              >
+                Search
+              </button>
+            </form>
+
+            <a href="#bookList" class="hero-scroll-link"> Browse all books </a>
+          </div>
+        </div>
       </div>
     </header>
 
