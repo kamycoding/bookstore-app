@@ -6,7 +6,10 @@ function getBookTemplate(book) {
           <h2 class="title is-4">${book.name}</h2>
           <p class="subtitle is-6">${book.author}</p>
           <p>Price: ${book.price} €</p>
-          <p>Likes: ${book.likes}</p>
+
+          <button class="button is-light" type="button">
+            ❤️ ${book.likes}
+          </button>
         </div>
       </article>
     </div>
