@@ -21,8 +21,9 @@ body {
   overflow-x: hidden;
   background: var(--bg-main);
   color: var(--text-main);
-  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen,
-    Ubuntu, Cantarell, sans-serif;
+  font-family:
+    -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen, Ubuntu,
+    Cantarell, sans-serif;
 }
 
 /* ─── Container ─── */
@@ -419,7 +420,14 @@ body {
 }
 
 /* ─── Book Card ─── */
+.book-column {
+  display: flex;
+}
+
 .book-card {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
   background: var(--bg-soft);
   border: 1px solid var(--border-soft);
   border-radius: 16px;
@@ -437,7 +445,28 @@ body {
 }
 
 .book-card-body {
+  display: flex;
+  flex-direction: column;
+  flex: 1;
   padding: 24px;
+}
+
+/* ─── Book Cover Image ─── */
+.book-cover-wrapper {
+  width: 100%;
+  margin-bottom: 16px;
+}
+
+.book-cover-img {
+  display: block;
+  width: 100%;
+  aspect-ratio: 3 / 4;
+  object-fit: contain;
+  transition: transform 0.35s ease;
+}
+
+.book-card:hover .book-cover-img {
+  transform: scale(1.04);
 }
 
 /* ─── Book Info ─── */
@@ -510,9 +539,25 @@ body {
 
 /* ─── Comments Section ─── */
 .book-comments-section {
-  margin-top: 20px;
+  margin-top: auto;
   padding-top: 20px;
   border-top: 1px solid var(--border-soft);
+}
+
+.book-comments-section .comments-list {
+  max-height: 120px;
+  overflow-y: auto;
+  scrollbar-width: thin;
+  scrollbar-color: rgba(255, 255, 255, 0.1) transparent;
+}
+
+.book-comments-section .comments-list::-webkit-scrollbar {
+  width: 4px;
+}
+
+.book-comments-section .comments-list::-webkit-scrollbar-thumb {
+  background: rgba(255, 255, 255, 0.1);
+  border-radius: 4px;
 }
 
 .book-comments-heading {

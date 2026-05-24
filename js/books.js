@@ -1,74 +1,114 @@
 const books = [
   {
-    name: "Die Geheimnisse des Ozeans",
-    author: "Clara Meer",
-    likes: 1250,
-    liked: true,
-    price: 19.99,
-    publishedYear: 2018,
-    genre: "Fantasy",
-    comments: [
-      {
-        name: "Leser123",
-        comment:
-          "Ein faszinierendes Abenteuerbuch, das mich von der ersten Seite an gefesselt hat.",
-      },
-    ],
-  },
-  {
-    name: "Der vergessene Pfad",
-    author: "Maximilian Schwarz",
-    likes: 980,
+    name: "Katzenpfade",
+    author: "Sara Lundberg",
+    likes: 128,
     liked: false,
-    price: 14.5,
-    publishedYear: 2021,
-    genre: "Fantasy",
-    comments: [],
-  },
-  {
-    name: "Code im Alltag",
-    author: "Nina Weber",
-    likes: 430,
-    liked: false,
-    price: 24.99,
-    publishedYear: 2023,
-    genre: "Technology",
+    price: 18.0,
+    publishedYear: 2026,
+    genre: "Children's Book",
+    image: "./img/books/Katzenpfade.jpg",
     comments: [
-      {
-        name: "DevTom",
-        comment:
-          "Sehr verständlich geschrieben und perfekt für den Einstieg in JavaScript.",
-      },
-    ],
-  },
-  {
-    name: "Das Licht der Berge",
-    author: "Jonas Stein",
-    likes: 760,
-    liked: true,
-    price: 17.95,
-    publishedYear: 2019,
-    genre: "Adventure",
-    comments: [
-      {
-        name: "BookFan",
-        comment:
-          "Die Atmosphäre ist stark beschrieben und die Geschichte bleibt spannend.",
-      },
       {
         name: "Mara",
-        comment: "Ein ruhiges, aber sehr schönes Abenteuerbuch.",
+        comment: "A calm and beautifully illustrated story about friendship.",
       },
     ],
   },
   {
-    name: "Stille in der Stadt",
-    author: "Laura König",
-    likes: 315,
+    name: "Kleiner Regen",
+    author: "Garth Greenwell",
+    likes: 94,
+    liked: true,
+    price: 24.0,
+    publishedYear: 2026,
+    genre: "Novel",
+    image: "./img/books/Kleiner-Regen.jpg",
+    comments: [
+      {
+        name: "Jonas",
+        comment: "Emotional, quiet and very well written.",
+      },
+    ],
+  },
+  {
+    name: "An den Rändern",
+    author: "Elena Ferrante",
+    likes: 112,
     liked: false,
-    price: 12.99,
-    publishedYear: 2020,
-    genre: "Drama",
-    comments: [],
+    price: 20.0,
+    publishedYear: 2026,
+    genre: "Essay",
+    image: "./img/books/Elena-Ferrante.jpg",
+    comments: [
+      {
+        name: "Lea",
+        comment: "Interesting thoughts about writing, reading and identity.",
+      },
+    ],
+  },
+  {
+    name: "Zwei Väter",
+    author: "John Niven",
+    likes: 87,
+    liked: false,
+    price: 18.0,
+    publishedYear: 2026,
+    genre: "Novel",
+    image: "./img/books/zwei-vater.jpg",
+    comments: [
+      {
+        name: "Tom",
+        comment: "A sharp and entertaining story with dark humor.",
+      },
+    ],
+  },
+  {
+    name: "Hinter dem Nebel",
+    author: "Christoffer Carlsson",
+    likes: 143,
+    liked: true,
+    price: 25.0,
+    publishedYear: 2026,
+    genre: "Crime Fiction",
+    image: "./img/books/Hinter-dem-Nebel.jpg",
+    comments: [
+      {
+        name: "Nina",
+        comment: "Atmospheric and suspenseful from the first chapter.",
+      },
+    ],
+  },
+  {
+    name: "Herwig und Elsie - Wo ist der große Zauberer?",
+    author: "Ute Krause",
+    likes: 76,
+    liked: false,
+    price: 16.0,
+    publishedYear: 2026,
+    genre: "Children's Book",
+    image: "./img/books/Herwig-und-Elsie.jpg",
+    comments: [
+      {
+        name: "Sophie",
+        comment: "A funny and magical story for young readers.",
+      },
+    ],
+  },
+  {
+    name: "Hilfe, zu viele Zaubereulen!",
+    author: "Mars-Leo Frei",
+    likes: 69,
+    liked: false,
+    price: 12.9,
+    publishedYear: 2026,
+    genre: "Fantasy",
+    image: "./img/books/zu-viele-Zaubereulen.jpg",
+    comments: [
+      {
+        name: "Ben",
+        comment: "Colorful, chaotic and perfect for a fun reading session.",
+      },
+    ],
   },
 ];

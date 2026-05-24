@@ -2,6 +2,9 @@ function getBookInfoTemplate(book, index) {
   const likeButtonClass = book.liked ? "book-btn-liked" : "book-btn";
 
   return /*html*/ `
+    <div class="book-cover-wrapper">
+      <img class="book-cover-img" src="${book.image}" alt="${book.name}" loading="lazy" />
+    </div>
     <h2 class="book-title">${book.name}</h2>
     <p class="book-author">${book.author}</p>
     <div class="book-meta">
