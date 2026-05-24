@@ -5,51 +5,133 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Bookstore App</title>
 
+    <!-- Favicon -->
+    <link rel="icon" type="image/svg+xml" href="./img/favicons/favicon.svg" />
     <link
-      rel="stylesheet"
-      href="https://cdn.jsdelivr.net/npm/bulma@1.0.4/css/bulma.min.css"
+      rel="icon"
+      type="image/png"
+      sizes="96x96"
+      href="./img/favicons/favicon-96x96.png"
     />
+    <link rel="icon" type="image/x-icon" href="./img/favicons/favicon.ico" />
+    <link
+      rel="apple-touch-icon"
+      sizes="180x180"
+      href="./img/favicons/apple-touch-icon.png"
+    />
+    <link rel="manifest" href="./img/favicons/site.webmanifest" />
+
     <link rel="stylesheet" href="./css/style.css" />
   </head>
 
   <body>
-    <header class="hero-section">
+    <header class="site-header">
+      <div class="container">
+        <nav class="site-navbar" aria-label="Main navigation">
+          <a class="site-logo" href="#hero">
+            <img
+              class="site-logo-img"
+              src="./img/logo-book-store.png"
+              alt="Bookstore"
+              width="200"
+              height="200"
+            />
+          </a>
+
+          <div class="site-nav-links">
+            <a href="#bookList">Books</a>
+            <a href="#heroSearch" id="navSearchLink">Search</a>
+          </div>
+        </nav>
+      </div>
+    </header>
+
+    <section id="hero" class="hero-section" aria-labelledby="heroTitle">
       <div class="container">
         <div class="hero-layout hero-layout-centered">
           <div class="hero-content hero-content-centered">
-            <h1 class="hero-title">
+            <h1 id="heroTitle" class="hero-title">
               Discover your
-              <span class="hero-title-accent">next read</span>
+              <span id="typewriter" class="hero-title-accent"></span>
             </h1>
 
-            <form class="hero-search" role="search">
+            <div class="hero-image-wrapper">
+              <img
+                class="hero-image"
+                src="./img/hero-book-img.png"
+                alt="Book illustration"
+                width="1254"
+                height="1254"
+                loading="lazy"
+              />
+            </div>
+
+            <form id="heroSearch" class="hero-search" role="search">
               <input
-                class="input hero-search-input"
+                class="hero-search-input"
                 type="search"
                 name="search"
                 placeholder="Search by title, author or genre..."
                 aria-label="Search books"
               />
 
-              <button
-                class="button is-primary hero-search-button"
-                type="button"
-              >
-                Search
-              </button>
+              <button class="hero-search-button" type="button">Search</button>
             </form>
-
-            <a href="#bookList" class="hero-scroll-link"> Browse all books </a>
           </div>
         </div>
-      </div>
-    </header>
 
-    <main class="section">
+        <a
+          href="#bookList"
+          class="scroll-indicator"
+          aria-label="Scroll to books"
+        >
+          <svg
+            class="scroll-arrow"
+            width="24"
+            height="24"
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="currentColor"
+            stroke-width="2"
+            stroke-linecap="round"
+            stroke-linejoin="round"
+          >
+            <path d="M6 9l6 6 6-6" />
+          </svg>
+        </a>
+      </div>
+    </section>
+
+    <main class="books-section">
       <div class="container">
-        <div id="bookList" class="columns is-multiline"></div>
+        <div class="section-heading">
+          <span class="section-label">Collection</span>
+          <h2 class="section-title">Explore our books</h2>
+          <p class="section-text">
+            Browse the current collection, like your favorite books, and add
+            your own comments.
+          </p>
+        </div>
+
+        <div id="bookList" class="book-grid"></div>
       </div>
     </main>
+
+    <footer class="site-footer">
+      <div class="container">
+        <div class="footer-inner">
+          <p class="footer-copy">© 2026 Bookstore App</p>
+          <a
+            class="footer-dev"
+            href="https://github.com/kamycoding"
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            Develop by <strong>Kamycoding</strong>
+          </a>
+        </div>
+      </div>
+    </footer>
 
     <script src="./js/books.js"></script>
     <script src="./js/templates.js"></script>
