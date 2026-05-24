@@ -1,9 +1,11 @@
 function getBookInfoTemplate(book, index) {
+  const likeButtonClass = book.liked ? "is-primary" : "is-light";
+
   return /*html*/ `
     <h2 class="title is-4">${book.name}</h2>
     <p class="subtitle is-6">${book.author}</p>
     <p>Price: ${book.price} €</p>
-    <button class="button is-light" type="button" onclick="toggleLike(${index})">
+    <button class="button ${likeButtonClass}" type="button" onclick="toggleLike(${index})">
       ❤️ ${book.likes}
     </button>
   `;
