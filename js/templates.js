@@ -5,6 +5,8 @@ function getBookInfoTemplate(book, index) {
     <h2 class="title is-4">${book.name}</h2>
     <p class="subtitle is-6">${book.author}</p>
     <p>Price: ${book.price} €</p>
+    <p>Genre: ${book.genre}</p>
+    <p>Published: ${book.publishedYear}</p>
     <button class="button ${likeButtonClass}" type="button" onclick="toggleLike(${index})">
       ❤️ ${book.likes}
     </button>
