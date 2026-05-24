@@ -32,7 +32,7 @@ function getCommentTemplate(comment) {
 
 function getCommentsTemplate(comments) {
   if (comments.length === 0) {
-    return `<p class="comments-empty">No comments yet.</p>`;
+    return `<p class="comments-empty">Noch keine Kommentare.</p>`;
   }
 
   return comments.map((comment) => getCommentTemplate(comment)).join("");
@@ -41,8 +41,8 @@ function getCommentsTemplate(comments) {
 function getCommentFormTemplate(index) {
   return /*html*/ `
     <form class="comment-form" onsubmit="addComment(event, ${index})">
-      <input class="comment-input" name="comment" placeholder="Write a comment..." />
-      <button class="comment-submit" type="submit">Send</button>
+      <input class="comment-input" name="comment" placeholder="Kommentar schreiben..." />
+      <button class="comment-submit" type="submit">Senden</button>
     </form>
   `;
 }
@@ -54,7 +54,7 @@ function getBookTemplate(book, index) {
         <div class="book-card-body">
           ${getBookInfoTemplate(book, index)}
           <div class="book-comments-section">
-            <h3 class="book-comments-heading">Comments</h3>
+            <h3 class="book-comments-heading">Kommentare</h3>
             ${getCommentsTemplate(book.comments)}
             ${getCommentFormTemplate(index)}
           </div>

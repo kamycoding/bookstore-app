@@ -6,12 +6,12 @@ const books = [
     liked: false,
     price: 18.0,
     publishedYear: 2026,
-    genre: "Children's Book",
+    genre: "Kinderbuch",
     image: "./img/books/Katzenpfade.jpg",
     comments: [
       {
         name: "Mara",
-        comment: "A calm and beautifully illustrated story about friendship.",
+        comment: "Eine ruhige, wunderschön illustrierte Geschichte über Freundschaft.",
       },
     ],
   },
@@ -22,12 +22,12 @@ const books = [
     liked: true,
     price: 24.0,
     publishedYear: 2026,
-    genre: "Novel",
+    genre: "Roman",
     image: "./img/books/Kleiner-Regen.jpg",
     comments: [
       {
         name: "Jonas",
-        comment: "Emotional, quiet and very well written.",
+        comment: "Leise, emotional und sehr stark geschrieben.",
       },
     ],
   },
@@ -43,7 +43,7 @@ const books = [
     comments: [
       {
         name: "Lea",
-        comment: "Interesting thoughts about writing, reading and identity.",
+        comment: "Spannende Gedanken über Schreiben, Lesen und Identität.",
       },
     ],
   },
@@ -54,12 +54,12 @@ const books = [
     liked: false,
     price: 18.0,
     publishedYear: 2026,
-    genre: "Novel",
+    genre: "Roman",
     image: "./img/books/zwei-vater.jpg",
     comments: [
       {
         name: "Tom",
-        comment: "A sharp and entertaining story with dark humor.",
+        comment: "Scharf beobachtet, unterhaltsam und mit dunklem Humor.",
       },
     ],
   },
@@ -70,12 +70,12 @@ const books = [
     liked: true,
     price: 25.0,
     publishedYear: 2026,
-    genre: "Crime Fiction",
+    genre: "Krimi",
     image: "./img/books/Hinter-dem-Nebel.jpg",
     comments: [
       {
         name: "Nina",
-        comment: "Atmospheric and suspenseful from the first chapter.",
+        comment: "Sehr atmosphärisch und von Anfang an spannend.",
       },
     ],
   },
@@ -86,12 +86,12 @@ const books = [
     liked: false,
     price: 16.0,
     publishedYear: 2026,
-    genre: "Children's Book",
+    genre: "Kinderbuch",
     image: "./img/books/Herwig-und-Elsie.jpg",
     comments: [
       {
         name: "Sophie",
-        comment: "A funny and magical story for young readers.",
+        comment: "Eine witzige und magische Geschichte für junge Leserinnen und Leser.",
       },
     ],
   },
@@ -107,7 +107,7 @@ const books = [
     comments: [
       {
         name: "Ben",
-        comment: "Colorful, chaotic and perfect for a fun reading session.",
+        comment: "Bunt, chaotisch und perfekt für eine lustige Leserunde.",
       },
     ],
   },

@@ -25,7 +25,7 @@ const addComment = (event, index) => {
 
   if (commentText === "") return;
 
-  books[index].comments.push({ name: "Guest", comment: commentText });
+  books[index].comments.push({ name: "Gast", comment: commentText });
   renderBooks();
 };
 
@@ -33,7 +33,7 @@ renderBooks();
 
 /* ─── Typewriter Effect ─── */
 const typewriterElement = document.getElementById("typewriter");
-const typewriterPhrases = ["next read", "favorite book", "new adventure"];
+const typewriterPhrases = ["nächstes Buch", "neues Lieblingsbuch", "nächstes Abenteuer"];
 
 let phraseIndex = 0;
 let charIndex = 0;
