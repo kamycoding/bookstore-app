@@ -32,7 +32,7 @@ const addComment = (event, index) => {
 renderBooks();
 
 /* ─── Typewriter Effect ─── */
-const typewriterElement = document.getElementById("typewriter");
+const typewriterElement = document.querySelector("#typewriter .typewriter-text");
 const typewriterPhrases = ["nächstes Buch", "neues Lieblingsbuch", "nächstes Abenteuer"];
 
 let phraseIndex = 0;

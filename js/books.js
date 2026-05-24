@@ -80,22 +80,6 @@ const books = [
     ],
   },
   {
-    name: "Herwig und Elsie - Wo ist der große Zauberer?",
-    author: "Ute Krause",
-    likes: 76,
-    liked: false,
-    price: 16.0,
-    publishedYear: 2026,
-    genre: "Kinderbuch",
-    image: "./img/books/Herwig-und-Elsie.jpg",
-    comments: [
-      {
-        name: "Sophie",
-        comment: "Eine witzige und magische Geschichte für junge Leserinnen und Leser.",
-      },
-    ],
-  },
-  {
     name: "Hilfe, zu viele Zaubereulen!",
     author: "Mars-Leo Frei",
     likes: 69,
