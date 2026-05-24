@@ -1,12 +1,28 @@
-function getBookTemplate(book) {
-  return /*html*/ `
-    <div class="column is-one-third-desktop is-half-tablet">
-      <article class="card">
-        <div class="card-content">
-          <h2 class="title is-4">${book.name}</h2>
-          <p class="subtitle is-6">${book.author}</p>
-        </div>
-      </article>
-    </div>
-  `;
-}
+const books = [
+  {
+    name: "Die Geheimnisse des Ozeans",
+    author: "Clara Meer",
+    likes: 1250,
+    liked: true,
+    price: 19.99,
+    publishedYear: 2018,
+    genre: "Fantasy",
+    comments: [
+      {
+        name: "Leser123",
+        comment:
+          "Ein faszinierendes Abenteuerbuch, das mich von der ersten Seite an gefesselt hat.",
+      },
+    ],
+  },
+  {
+    name: "Der vergessene Pfad",
+    author: "Maximilian Schwarz",
+    likes: 980,
+    liked: false,
+    price: 14.5,
+    publishedYear: 2021,
+    genre: "Fantasy",
+    comments: [],
+  },
+];
