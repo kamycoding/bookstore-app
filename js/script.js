@@ -1,11 +1,23 @@
 const renderBooks = () => {
   const bookList = document.getElementById("bookList");
+  const searchTerm = getNormalizedSearchTerm();
 
-  const booksHtml = books
-    .map((book, index) => getBookTemplate(book, index))
-    .join("");
+  if (searchTerm === "") {
+    const booksHtml = books
+      .map((book, index) => getBookTemplate(book, index))
+      .join("");
+    bookList.innerHTML = booksHtml;
+    return;
+  }
 
-  bookList.innerHTML = booksHtml;
+  const filteredEntries = getFilteredBookEntries(searchTerm);
+
+  if (filteredEntries.length === 0) {
+    bookList.innerHTML = `<p class="empty-state">Keine Bücher gefunden.</p>`;
+    return;
+  }
+
+  renderBookEntries(filteredEntries);
 };
 
 const toggleLike = (index) => {
@@ -96,4 +108,55 @@ document.getElementById("navSearchLink")?.addEventListener("click", (e) => {
     searchInput.closest(".hero-section")?.scrollIntoView({ behavior: "smooth" });
     setTimeout(() => searchInput.focus(), 500);
   }
+});
+
+/* ─── Search / Filter ─── */
+const getSearchInput = () => document.querySelector(".hero-search-input");
+
+const getNormalizedSearchTerm = () => {
+  const input = getSearchInput();
+  if (!input) return "";
+  return input.value.trim().toLowerCase();
+};
+
+const doesBookMatchSearch = (book, searchTerm) => {
+  const name = book.name.toLowerCase();
+  const author = book.author.toLowerCase();
+  const genre = book.genre.toLowerCase();
+  return (
+    name.includes(searchTerm) ||
+    author.includes(searchTerm) ||
+    genre.includes(searchTerm)
+  );
+};
+
+const getFilteredBookEntries = (searchTerm) => {
+  return books
+    .map((book, index) => ({ book, index }))
+    .filter((entry) => doesBookMatchSearch(entry.book, searchTerm));
+};
+
+const renderBookEntries = (bookEntries) => {
+  const bookList = document.getElementById("bookList");
+  const booksHtml = bookEntries
+    .map((entry) => getBookTemplate(entry.book, entry.index))
+    .join("");
+  bookList.innerHTML = booksHtml;
+};
+
+const handleSearch = () => {
+  renderBooks();
+};
+
+document.getElementById("heroSearch")?.addEventListener("submit", (e) => {
+  e.preventDefault();
+  handleSearch();
+});
+
+document.querySelector(".hero-search-button")?.addEventListener("click", () => {
+  handleSearch();
+});
+
+getSearchInput()?.addEventListener("input", () => {
+  handleSearch();
 });

@@ -1,15 +1,15 @@
-function getLikeIcon(liked) {
-  if (liked) {
-    return /*html*/ `
-      <svg class="book-like-icon" viewBox="0 0 24 24" aria-hidden="true">
-        <path
-          d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z"
-          fill="currentColor"
-        />
-      </svg>
-    `;
-  }
+function getFilledLikeIcon() {
+  return /*html*/ `
+    <svg class="book-like-icon" viewBox="0 0 24 24" aria-hidden="true">
+      <path
+        d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z"
+        fill="currentColor"
+      />
+    </svg>
+  `;
+}
 
+function getEmptyLikeIcon() {
   return /*html*/ `
     <svg class="book-like-icon" viewBox="0 0 24 24" aria-hidden="true">
       <path
@@ -20,21 +20,37 @@ function getLikeIcon(liked) {
   `;
 }
 
+function getLikeIcon(liked) {
+  return liked ? getFilledLikeIcon() : getEmptyLikeIcon();
+}
+
+function getCommentAvatarTemplate(comment) {
+  return /*html*/ `
+    <img
+      class="comment-avatar"
+      src="${comment.avatar}"
+      alt="${comment.name}"
+      width="32"
+      height="32"
+      loading="lazy"
+    />
+  `;
+}
+
+function getCommentContentTemplate(comment) {
+  return /*html*/ `
+    <div class="comment-content">
+      <span class="comment-name">${comment.name}</span>
+      <p class="comment-text">${comment.comment}</p>
+    </div>
+  `;
+}
+
 function getCommentTemplate(comment) {
   return /*html*/ `
     <li class="comment">
-      <img
-        class="comment-avatar"
-        src="${comment.avatar}"
-        alt="${comment.name}"
-        width="32"
-        height="32"
-        loading="lazy"
-      />
-      <div class="comment-content">
-        <span class="comment-name">${comment.name}</span>
-        <p class="comment-text">${comment.comment}</p>
-      </div>
+      ${getCommentAvatarTemplate(comment)}
+      ${getCommentContentTemplate(comment)}
     </li>
   `;
 }
@@ -50,53 +66,87 @@ function getCommentsTemplate(comments) {
 function getCommentFormTemplate(index) {
   return /*html*/ `
     <form class="comment-form" onsubmit="addComment(event, ${index})">
-      <input class="comment-input" name="comment" placeholder="Kommentar schreiben..." />
+      <label for="commentInput-${index}" class="visually-hidden">Kommentar schreiben</label>
+      <input
+        class="comment-input"
+        id="commentInput-${index}"
+        name="comment"
+        placeholder="Kommentar schreiben..."
+        autocomplete="off"
+      />
       <button class="comment-submit" type="submit">Senden</button>
     </form>
   `;
 }
 
-function getBookTemplate(book, index) {
+function getBookCoverTemplate(book) {
+  return /*html*/ `
+    <div class="book-cover">
+      <img class="book-cover-img" src="${book.image}" alt="${book.name}" loading="lazy" />
+    </div>
+  `;
+}
+
+function getBookMainInfoTemplate(book) {
+  return /*html*/ `
+    <div class="book-info-main">
+      <h2 class="book-title">${book.name}</h2>
+      <div class="book-subline">
+        <p class="book-author">${book.author}</p>
+        <p class="book-meta">${book.genre} · ${book.publishedYear}</p>
+      </div>
+    </div>
+  `;
+}
+
+function getBookActionsTemplate(book, index) {
   const likeButtonClass = book.liked
     ? "book-like-btn book-like-btn--active"
     : "book-like-btn";
 
   return /*html*/ `
+    <div class="book-actions">
+      <button
+        class="${likeButtonClass}"
+        type="button"
+        onclick="toggleLike(${index})"
+        aria-label="${book.liked ? "Like entfernen" : "Like hinzufügen"}"
+      >
+        ${getLikeIcon(book.liked)}
+        <span class="book-like-count">${book.likes}</span>
+      </button>
+      <span class="book-price">${book.price} €</span>
+    </div>
+  `;
+}
+
+function getBookDetailsTemplate(book, index) {
+  return /*html*/ `
+    <div class="book-details">
+      ${getBookMainInfoTemplate(book)}
+      ${getBookActionsTemplate(book, index)}
+    </div>
+  `;
+}
+
+function getBookCommentsTemplate(book, index) {
+  return /*html*/ `
+    <section class="book-comments" aria-label="Kommentare zu ${book.name}">
+      <h3 class="book-comments-heading">Kommentare</h3>
+      <div class="comments-body">
+        ${getCommentsTemplate(book.comments)}
+      </div>
+      ${getCommentFormTemplate(index)}
+    </section>
+  `;
+}
+
+function getBookTemplate(book, index) {
+  return /*html*/ `
     <article class="book-card">
-      <div class="book-cover">
-        <img class="book-cover-img" src="${book.image}" alt="${book.name}" loading="lazy" />
-      </div>
-
-      <div class="book-details">
-        <div class="book-info-main">
-          <h2 class="book-title">${book.name}</h2>
-          <div class="book-subline">
-            <p class="book-author">${book.author}</p>
-            <p class="book-meta">${book.genre} · ${book.publishedYear}</p>
-          </div>
-        </div>
-
-        <div class="book-actions">
-          <button
-            class="${likeButtonClass}"
-            type="button"
-            onclick="toggleLike(${index})"
-            aria-label="${book.liked ? "Like entfernen" : "Like hinzufügen"}"
-          >
-            ${getLikeIcon(book.liked)}
-            <span class="book-like-count">${book.likes}</span>
-          </button>
-          <span class="book-price">${book.price} €</span>
-        </div>
-      </div>
-
-      <section class="book-comments" aria-label="Kommentare zu ${book.name}">
-        <h3 class="book-comments-heading">Kommentare</h3>
-        <div class="comments-body">
-          ${getCommentsTemplate(book.comments)}
-        </div>
-        ${getCommentFormTemplate(index)}
-      </section>
+      ${getBookCoverTemplate(book)}
+      ${getBookDetailsTemplate(book, index)}
+      ${getBookCommentsTemplate(book, index)}
     </article>
   `;
 }
