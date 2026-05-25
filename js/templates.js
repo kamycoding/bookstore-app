@@ -23,8 +23,18 @@ function getLikeIcon(liked) {
 function getCommentTemplate(comment) {
   return /*html*/ `
     <li class="comment">
-      <span class="comment-name">${comment.name}</span>
-      <p class="comment-text">${comment.comment}</p>
+      <img
+        class="comment-avatar"
+        src="${comment.avatar}"
+        alt="${comment.name}"
+        width="32"
+        height="32"
+        loading="lazy"
+      />
+      <div class="comment-content">
+        <span class="comment-name">${comment.name}</span>
+        <p class="comment-text">${comment.comment}</p>
+      </div>
     </li>
   `;
 }

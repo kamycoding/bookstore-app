@@ -25,7 +25,11 @@ const addComment = (event, index) => {
 
   if (commentText === "") return;
 
-  books[index].comments.push({ name: "Gast", comment: commentText });
+  books[index].comments.push({
+    name: "Gast",
+    avatar: "./img/avatars/gast.svg",
+    comment: commentText,
+  });
   renderBooks();
 };
 
