@@ -92,8 +92,10 @@ const addComment = (event, index) => {
   renderBooks();
 };
 
-/* ─── Typewriter Effect ─── */
-const typewriterElement = document.querySelector("#typewriter .typewriter-text");
+/* Typewriter*/
+const typewriterElement = document.querySelector(
+  "#typewriter .typewriter-text",
+);
 const typewriterPhrases = [
   "nächstes Buch",
   "neues Lieblingsbuch",
@@ -161,7 +163,7 @@ document.getElementById("navSearchLink")?.addEventListener("click", (e) => {
   }
 });
 
-/* ─── Search / Filter ─── */
+/* Search */
 const getSearchInput = () => document.querySelector(".hero-search-input");
 
 const getNormalizedSearchTerm = () => {
