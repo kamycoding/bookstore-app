@@ -11,6 +11,7 @@ const books = [
     comments: [
       {
         name: "Mara",
+        avatar: "./img/avatars/Avatar1.svg",
         comment: "Eine ruhige, wunderschön illustrierte Geschichte über Freundschaft.",
       },
     ],
@@ -27,6 +28,7 @@ const books = [
     comments: [
       {
         name: "Jonas",
+        avatar: "./img/avatars/Avatar2.svg",
         comment: "Leise, emotional und sehr stark geschrieben.",
       },
     ],
@@ -43,6 +45,7 @@ const books = [
     comments: [
       {
         name: "Lea",
+        avatar: "./img/avatars/Avatar3.svg",
         comment: "Spannende Gedanken über Schreiben, Lesen und Identität.",
       },
     ],
@@ -59,6 +62,7 @@ const books = [
     comments: [
       {
         name: "Tom",
+        avatar: "./img/avatars/Avatar4.svg",
         comment: "Scharf beobachtet, unterhaltsam und mit dunklem Humor.",
       },
     ],
@@ -75,6 +79,7 @@ const books = [
     comments: [
       {
         name: "Nina",
+        avatar: "./img/avatars/Avatar5.svg",
         comment: "Sehr atmosphärisch und von Anfang an spannend.",
       },
     ],
@@ -91,6 +96,7 @@ const books = [
     comments: [
       {
         name: "Ben",
+        avatar: "./img/avatars/Avatar6.svg",
         comment: "Bunt, chaotisch und perfekt für eine lustige Leserunde.",
       },
     ],
