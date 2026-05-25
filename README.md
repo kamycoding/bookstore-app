@@ -1,50 +1,63 @@
 # Buchfinder
 
-A simple bookstore app where you can browse books, like them, leave comments, and search by title, author, or genre. Built with just HTML, CSS, and Vanilla JavaScript, no frameworks, no build tools.
+Buchfinder is a small frontend-only bookstore app built with HTML, CSS and Vanilla JavaScript.
+
+## Features
+
+- Dynamic book rendering from a JavaScript array
+- Like and dislike functionality
+- Comment section for each book
+- Comment avatars
+- Search by title, author and genre
+- Favorites filter
+- Empty state for search results
+- Persistent likes and comments with localStorage
+- Responsive custom layout
+- Typewriter hero effect
+- Favicon support
+- No external framework
+
+## Tech Stack
+
+- HTML
+- CSS
+- Vanilla JavaScript
+
+## How to run
+
+Open `index.html` in the browser.
 
 ## Project Structure
 
-```
-buchfinder/
-├── index.html          # main page
-├── css/style.css       # all styles (dark purple theme)
+```txt
+bookstore-app/
+├── index.html
+├── README.md
+├── css/
+│   └── style.css
 ├── js/
-│   ├── books.js        # book data (array of objects)
-│   ├── templates.js    # HTML template functions
-│   └── script.js       # app logic (render, like, comment, search)
-├── img/
-│   ├── books/          # book covers
-│   ├── avatars/        # user avatars
-│   ├── favicons/       # favicon files
-│   ├── hero-book-img.png
-│   └── logo-book-store.png
-└── README.md
+│   ├── books.js
+│   ├── templates.js
+│   └── script.js
+└── img/
+    ├── books/
+    ├── avatars/
+    └── favicons/
 ```
 
-## How to Run
+## Learning Goals
 
-Open `index.html` in your browser. That's it.
+- Arrays
+- Objects
+- Nested arrays
+- Template functions
+- DOM manipulation
+- Events
+- Re-rendering
+- Basic search/filter logic
+- localStorage basics
+- Responsive CSS
 
-## Built With
+## Note
 
-- HTML5
-- CSS3 (responsive, custom properties, CSS Grid)
-- Vanilla JavaScript (ES6)
-
-## What I Learned
-
-- Arrays and objects
-- Nested data (comments inside books)
-- Template functions to separate data from display
-- DOM manipulation and event handling
-- Re-rendering the UI after state changes
-- Responsive design with media queries
-- Search filtering with `filter()` and `includes()`
-
-## Image Note
-
-Keep images under 500 KB each for the final submission.
-
----
-
-Built by [Kamycoding](https://github.com/kamycoding)
+Images should be optimized and kept below 500kb for final submission.

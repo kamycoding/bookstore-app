@@ -63,17 +63,25 @@ function getCommentsTemplate(comments) {
   return `<ul class="comments-list">${comments.map((comment) => getCommentTemplate(comment)).join("")}</ul>`;
 }
 
+function getCommentInputTemplate(index) {
+  return /*html*/ `
+    <label for="commentInput-${index}" class="visually-hidden">
+      Kommentar schreiben
+    </label>
+    <input
+      class="comment-input"
+      id="commentInput-${index}"
+      name="comment"
+      placeholder="Kommentar schreiben..."
+      autocomplete="off"
+    />
+  `;
+}
+
 function getCommentFormTemplate(index) {
   return /*html*/ `
     <form class="comment-form" onsubmit="addComment(event, ${index})">
-      <label for="commentInput-${index}" class="visually-hidden">Kommentar schreiben</label>
-      <input
-        class="comment-input"
-        id="commentInput-${index}"
-        name="comment"
-        placeholder="Kommentar schreiben..."
-        autocomplete="off"
-      />
+      ${getCommentInputTemplate(index)}
       <button class="comment-submit" type="submit">Senden</button>
     </form>
   `;
@@ -99,22 +107,34 @@ function getBookMainInfoTemplate(book) {
   `;
 }
 
-function getBookActionsTemplate(book, index) {
-  const likeButtonClass = book.liked
+function getLikeButtonClass(book) {
+  return book.liked
     ? "book-like-btn book-like-btn--active"
     : "book-like-btn";
+}
 
+function getLikeButtonLabel(book) {
+  return book.liked ? "Like entfernen" : "Like hinzufügen";
+}
+
+function getLikeButtonTemplate(book, index) {
+  return /*html*/ `
+    <button
+      class="${getLikeButtonClass(book)}"
+      type="button"
+      onclick="toggleLike(${index})"
+      aria-label="${getLikeButtonLabel(book)}"
+    >
+      ${getLikeIcon(book.liked)}
+      <span class="book-like-count">${book.likes}</span>
+    </button>
+  `;
+}
+
+function getBookActionsTemplate(book, index) {
   return /*html*/ `
     <div class="book-actions">
-      <button
-        class="${likeButtonClass}"
-        type="button"
-        onclick="toggleLike(${index})"
-        aria-label="${book.liked ? "Like entfernen" : "Like hinzufügen"}"
-      >
-        ${getLikeIcon(book.liked)}
-        <span class="book-like-count">${book.likes}</span>
-      </button>
+      ${getLikeButtonTemplate(book, index)}
       <span class="book-price">${book.price} €</span>
     </div>
   `;

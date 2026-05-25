@@ -381,6 +381,28 @@ body {
   letter-spacing: -0.03em;
 }
 
+.favorites-filter-button {
+  margin-top: 20px;
+  padding: 10px 18px;
+  border: 1px solid var(--border-soft);
+  border-radius: 999px;
+  background: rgba(255, 255, 255, 0.06);
+  color: var(--text-main);
+  font: inherit;
+  font-weight: 700;
+  cursor: pointer;
+  transition:
+    background 0.2s,
+    border-color 0.2s,
+    color 0.2s;
+}
+
+.favorites-filter-button:hover {
+  border-color: var(--accent);
+  background: rgba(124, 58, 237, 0.16);
+  color: var(--accent-light);
+}
+
 .book-grid {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
