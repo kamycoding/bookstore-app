@@ -12,7 +12,8 @@ const books = [
       {
         name: "Mara",
         avatar: "./img/avatars/Avatar1.svg",
-        comment: "Eine ruhige, wunderschön illustrierte Geschichte über Freundschaft.",
+        comment:
+          "Eine ruhige, wunderschön illustrierte Geschichte über Freundschaft.",
       },
     ],
   },
