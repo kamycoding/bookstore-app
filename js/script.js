@@ -1,32 +1,82 @@
-const renderBooks = () => {
-  const bookList = document.getElementById("bookList");
+const STORAGE_KEY = "buchfinderBooks";
+
+const cloneBooks = (bookList) => {
+  return JSON.parse(JSON.stringify(bookList));
+};
+
+const isValidStoredBooks = (storedBooks) => {
+  return Array.isArray(storedBooks) && storedBooks.length === books.length;
+};
+
+const loadStoredBooks = () => {
+  try {
+    const storedBooks = localStorage.getItem(STORAGE_KEY);
+    if (!storedBooks) return cloneBooks(books);
+    const parsedBooks = JSON.parse(storedBooks);
+    return isValidStoredBooks(parsedBooks) ? parsedBooks : cloneBooks(books);
+  } catch {
+    return cloneBooks(books);
+  }
+};
+
+let appBooks = loadStoredBooks();
+let showOnlyFavorites = false;
+
+const getBookListElement = () => document.getElementById("bookList");
+
+const getAllBookEntries = () => {
+  return appBooks.map((book, index) => ({ book, index }));
+};
+
+const saveBooks = () => {
+  localStorage.setItem(STORAGE_KEY, JSON.stringify(appBooks));
+};
+
+const renderEmptyState = () => {
+  getBookListElement().innerHTML = `
+    <p class="empty-state">Keine Bücher gefunden.</p>
+  `;
+};
+
+const getVisibleBookEntries = () => {
   const searchTerm = getNormalizedSearchTerm();
+  let entries = getAllBookEntries();
 
-  if (searchTerm === "") {
-    const booksHtml = books
-      .map((book, index) => getBookTemplate(book, index))
-      .join("");
-    bookList.innerHTML = booksHtml;
+  if (searchTerm !== "") {
+    entries = filterEntriesBySearch(entries, searchTerm);
+  }
+  if (showOnlyFavorites) entries = filterFavoriteEntries(entries);
+
+  return entries;
+};
+
+const renderBooks = () => {
+  const visibleBookEntries = getVisibleBookEntries();
+
+  if (visibleBookEntries.length === 0) {
+    renderEmptyState();
     return;
   }
 
-  const filteredEntries = getFilteredBookEntries(searchTerm);
-
-  if (filteredEntries.length === 0) {
-    bookList.innerHTML = `<p class="empty-state">Keine Bücher gefunden.</p>`;
-    return;
-  }
-
-  renderBookEntries(filteredEntries);
+  renderBookEntries(visibleBookEntries);
 };
 
 const toggleLike = (index) => {
-  const book = books[index];
+  const book = appBooks[index];
 
   book.liked = !book.liked;
   book.likes += book.liked ? 1 : -1;
 
+  saveBooks();
   renderBooks();
+};
+
+const createGuestComment = (commentText) => {
+  return {
+    name: "Gast",
+    avatar: "./img/avatars/gast.svg",
+    comment: commentText,
+  };
 };
 
 const addComment = (event, index) => {
@@ -37,19 +87,18 @@ const addComment = (event, index) => {
 
   if (commentText === "") return;
 
-  books[index].comments.push({
-    name: "Gast",
-    avatar: "./img/avatars/gast.svg",
-    comment: commentText,
-  });
+  appBooks[index].comments.push(createGuestComment(commentText));
+  saveBooks();
   renderBooks();
 };
 
-renderBooks();
-
 /* ─── Typewriter Effect ─── */
 const typewriterElement = document.querySelector("#typewriter .typewriter-text");
-const typewriterPhrases = ["nächstes Buch", "neues Lieblingsbuch", "nächstes Abenteuer"];
+const typewriterPhrases = [
+  "nächstes Buch",
+  "neues Lieblingsbuch",
+  "nächstes Abenteuer",
+];
 
 let phraseIndex = 0;
 let charIndex = 0;
@@ -105,7 +154,9 @@ document.getElementById("navSearchLink")?.addEventListener("click", (e) => {
   e.preventDefault();
   const searchInput = document.querySelector(".hero-search-input");
   if (searchInput) {
-    searchInput.closest(".hero-section")?.scrollIntoView({ behavior: "smooth" });
+    searchInput
+      .closest(".hero-section")
+      ?.scrollIntoView({ behavior: "smooth" });
     setTimeout(() => searchInput.focus(), 500);
   }
 });
@@ -130,14 +181,18 @@ const doesBookMatchSearch = (book, searchTerm) => {
   );
 };
 
-const getFilteredBookEntries = (searchTerm) => {
-  return books
-    .map((book, index) => ({ book, index }))
-    .filter((entry) => doesBookMatchSearch(entry.book, searchTerm));
+const filterEntriesBySearch = (bookEntries, searchTerm) => {
+  return bookEntries.filter((entry) => {
+    return doesBookMatchSearch(entry.book, searchTerm);
+  });
+};
+
+const filterFavoriteEntries = (bookEntries) => {
+  return bookEntries.filter((entry) => entry.book.liked);
 };
 
 const renderBookEntries = (bookEntries) => {
-  const bookList = document.getElementById("bookList");
+  const bookList = getBookListElement();
   const booksHtml = bookEntries
     .map((entry) => getBookTemplate(entry.book, entry.index))
     .join("");
@@ -148,14 +203,31 @@ const handleSearch = () => {
   renderBooks();
 };
 
+const updateFavoritesButtonText = () => {
+  const button = document.getElementById("favoritesFilterButton");
+  if (!button) return;
+  button.textContent = showOnlyFavorites
+    ? "Alle Bücher anzeigen"
+    : "Nur Favoriten anzeigen";
+};
+
+const toggleFavoritesFilter = () => {
+  showOnlyFavorites = !showOnlyFavorites;
+  updateFavoritesButtonText();
+  renderBooks();
+};
+
+renderBooks();
+updateFavoritesButtonText();
+
 document.getElementById("heroSearch")?.addEventListener("submit", (e) => {
   e.preventDefault();
   handleSearch();
 });
 
-document.querySelector(".hero-search-button")?.addEventListener("click", () => {
-  handleSearch();
-});
+document
+  .getElementById("favoritesFilterButton")
+  ?.addEventListener("click", toggleFavoritesFilter);
 
 getSearchInput()?.addEventListener("input", () => {
   handleSearch();
