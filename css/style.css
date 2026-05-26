@@ -368,6 +368,7 @@ body {
 
 .books-section {
   padding: 80px 0 100px;
+  scroll-margin-top: 88px;
 }
 
 .section-heading {
@@ -469,10 +470,21 @@ body {
   }
 }
 
+.book-card,
+.book-title,
+.book-author,
+.book-meta,
+.comment,
+.comment-text,
+.comments-empty {
+  min-width: 0;
+  overflow-wrap: anywhere;
+  word-break: break-word;
+}
+
 .book-card {
   display: grid;
   grid-template-rows: auto 1fr auto;
-  min-width: 0;
   height: 100%;
   border: 1px solid rgba(255, 255, 255, 0.1);
   border-radius: 18px;
@@ -717,6 +729,7 @@ body {
 }
 
 .comment-text {
+  max-width: 100%;
   margin: 0;
   font-size: 0.875rem;
   line-height: 1.55;
@@ -914,6 +927,14 @@ body {
 
   .book-grid {
     gap: 24px;
+  }
+
+  .comment-form {
+    flex-direction: column;
+  }
+
+  .comment-submit {
+    width: 100%;
   }
 
   .book-card,

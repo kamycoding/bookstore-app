@@ -1,5 +1,20 @@
 const STORAGE_KEY = "buchfinderBooks";
 
+const bookList = document.getElementById("bookList");
+const typewriterElement = document.getElementById("typewriter");
+const navSearchLink = document.getElementById("navSearchLink");
+const searchInput = document.querySelector(".hero-search-input");
+
+const typewriterPhrases = [
+  "nächstes Buch",
+  "neues Lieblingsbuch",
+  "nächstes Abenteuer",
+];
+
+let phraseIndex = 0;
+let charIndex = 0;
+let isDeleting = false;
+
 const cloneBooks = (bookList) => {
   return JSON.parse(JSON.stringify(bookList));
 };
@@ -22,8 +37,6 @@ const loadStoredBooks = () => {
 let appBooks = loadStoredBooks();
 let showOnlyFavorites = false;
 
-const getBookListElement = () => document.getElementById("bookList");
-
 const getAllBookEntries = () => {
   return appBooks.map((book, index) => ({ book, index }));
 };
@@ -33,7 +46,7 @@ const saveBooks = () => {
 };
 
 const renderEmptyState = () => {
-  getBookListElement().innerHTML = `
+  bookList.innerHTML = `
     <p class="empty-state">Keine Bücher gefunden.</p>
   `;
 };
@@ -92,27 +105,16 @@ const addComment = (event, index) => {
   renderBooks();
 };
 
-/* Typewriter*/
-const typewriterElement = document.querySelector(
-  "#typewriter .typewriter-text",
-);
-const typewriterPhrases = [
-  "nächstes Buch",
-  "neues Lieblingsbuch",
-  "nächstes Abenteuer",
-];
-
-let phraseIndex = 0;
-let charIndex = 0;
-let isDeleting = false;
-
 const getCurrentPhrase = () => typewriterPhrases[phraseIndex];
 
 const updateTypewriterText = () => {
+  const textElement = typewriterElement?.querySelector(".typewriter-text");
+  if (!textElement) return;
+
   const currentPhrase = getCurrentPhrase();
   const nextIndex = isDeleting ? charIndex - 1 : charIndex + 1;
 
-  typewriterElement.textContent = currentPhrase.substring(0, nextIndex);
+  textElement.textContent = currentPhrase.substring(0, nextIndex);
   charIndex = nextIndex;
 };
 
@@ -139,7 +141,7 @@ const updateTypewriterState = () => {
 };
 
 const typewriterEffect = () => {
-  if (!typewriterElement) return;
+  if (!typewriterElement?.querySelector(".typewriter-text")) return;
 
   updateTypewriterText();
 
@@ -152,24 +154,18 @@ const typewriterEffect = () => {
 
 typewriterEffect();
 
-document.getElementById("navSearchLink")?.addEventListener("click", (e) => {
-  e.preventDefault();
-  const searchInput = document.querySelector(".hero-search-input");
-  if (searchInput) {
-    searchInput
-      .closest(".hero-section")
-      ?.scrollIntoView({ behavior: "smooth" });
-    setTimeout(() => searchInput.focus(), 500);
-  }
-});
+const focusHeroSearch = (event) => {
+  event.preventDefault();
 
-/* Search */
-const getSearchInput = () => document.querySelector(".hero-search-input");
+  searchInput.closest(".hero-section")?.scrollIntoView({ behavior: "smooth" });
+  setTimeout(() => searchInput.focus(), 500);
+};
+
+navSearchLink?.addEventListener("click", focusHeroSearch);
 
 const getNormalizedSearchTerm = () => {
-  const input = getSearchInput();
-  if (!input) return "";
-  return input.value.trim().toLowerCase();
+  if (!searchInput) return "";
+  return searchInput.value.trim().toLowerCase();
 };
 
 const doesBookMatchSearch = (book, searchTerm) => {
@@ -194,7 +190,6 @@ const filterFavoriteEntries = (bookEntries) => {
 };
 
 const renderBookEntries = (bookEntries) => {
-  const bookList = getBookListElement();
   const booksHtml = bookEntries
     .map((entry) => getBookTemplate(entry.book, entry.index))
     .join("");
@@ -231,6 +226,6 @@ document
   .getElementById("favoritesFilterButton")
   ?.addEventListener("click", toggleFavoritesFilter);
 
-getSearchInput()?.addEventListener("input", () => {
+searchInput?.addEventListener("input", () => {
   handleSearch();
 });
