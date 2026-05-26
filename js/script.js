@@ -4,6 +4,8 @@ const bookList = document.getElementById("bookList");
 const typewriterElement = document.getElementById("typewriter");
 const navSearchLink = document.getElementById("navSearchLink");
 const searchInput = document.querySelector(".hero-search-input");
+const heroSearchForm = document.getElementById("heroSearch");
+const favoritesFilterButton = document.getElementById("favoritesFilterButton");
 
 const typewriterPhrases = [
   "nächstes Buch",
@@ -15,8 +17,8 @@ let phraseIndex = 0;
 let charIndex = 0;
 let isDeleting = false;
 
-const cloneBooks = (bookList) => {
-  return JSON.parse(JSON.stringify(bookList));
+const cloneBooks = (sourceBooks) => {
+  return JSON.parse(JSON.stringify(sourceBooks));
 };
 
 const isValidStoredBooks = (storedBooks) => {
@@ -157,6 +159,8 @@ typewriterEffect();
 const focusHeroSearch = (event) => {
   event.preventDefault();
 
+  if (!searchInput) return;
+
   searchInput.closest(".hero-section")?.scrollIntoView({ behavior: "smooth" });
   setTimeout(() => searchInput.focus(), 500);
 };
@@ -201,9 +205,9 @@ const handleSearch = () => {
 };
 
 const updateFavoritesButtonText = () => {
-  const button = document.getElementById("favoritesFilterButton");
-  if (!button) return;
-  button.textContent = showOnlyFavorites
+  if (!favoritesFilterButton) return;
+
+  favoritesFilterButton.textContent = showOnlyFavorites
     ? "Alle Bücher anzeigen"
     : "Nur Favoriten anzeigen";
 };
@@ -217,14 +221,12 @@ const toggleFavoritesFilter = () => {
 renderBooks();
 updateFavoritesButtonText();
 
-document.getElementById("heroSearch")?.addEventListener("submit", (e) => {
-  e.preventDefault();
+heroSearchForm?.addEventListener("submit", (event) => {
+  event.preventDefault();
   handleSearch();
 });
 
-document
-  .getElementById("favoritesFilterButton")
-  ?.addEventListener("click", toggleFavoritesFilter);
+favoritesFilterButton?.addEventListener("click", toggleFavoritesFilter);
 
 searchInput?.addEventListener("input", () => {
   handleSearch();
